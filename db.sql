@@ -4,9 +4,9 @@ create table companies
         constraint companies_pk_id
             primary key,
     social_name     varchar not null,
-    company_name    varchar,
-    document_number varchar,
-    address         varchar
+    company_name    varchar not null,
+    document_number varchar not null,
+    address         varchar not null
 );
 
 alter table companies
@@ -18,9 +18,9 @@ create table products
         constraint products_pk_id
             primary key,
     name        varchar not null,
-    type        varchar,
-    description integer,
-    price       varchar,
+    type        varchar not null,
+    description integer not null,
+    price       varchar not null,
     stock       integer not null
 );
 
