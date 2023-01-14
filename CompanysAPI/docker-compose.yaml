@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  company-api-postgres-db:
+    container_name: company-api-postgres-db
+    restart: on-failure
+    environment:
+      POSTGRES_USER: ${DATABASE_USER:-companyapi}
+      POSTGRES_PASSWORD: ${DATABASE_PASS:-companyapi}
+      POSTGRES_DB: ${DATABASE_NAME:-companyapi}
+    image: postgres:alpine
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
+    volumes:
+      - company-api-postgres-volume:/var/lib/postgresql/data
+    networks:
+      - company-api-network
+
+volumes:
+  company-api-postgres-volume:
+    driver: local
+
+networks:
+  company-api-network:
+    external: true
+    name: company-api-network
+    driver: bridge
